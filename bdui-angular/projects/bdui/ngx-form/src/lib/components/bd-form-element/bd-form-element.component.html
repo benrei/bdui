@@ -1,0 +1,17 @@
+<div class="bd-form-element">
+  <label *ngIf="label" [title]="label">{{ label }}</label>
+  <div class="bd-form-element-content">
+    @switch (type) {
+      @case ("Space") {
+        <div></div>
+      }
+      @default {
+        Element<code>{{ type }}</code> not supported
+      }
+    }
+  </div>
+  <div *ngIf="hintLeft || hintRight" class="bd-form-element-hint">
+    <span [title]="hintLeft">{{ hintLeft }}</span>
+    <span [title]="hintRight">{{ hintRight }}</span>
+  </div>
+</div>

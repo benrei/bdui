@@ -1,0 +1,16 @@
+.bd-form-element {
+}
+.bd-form-element-content {
+}
+
+.bd-form-element-hint {
+  display: flex;
+  font-size: 12px;
+  line-height: 16px;
+  justify-content: space-between;
+  overflow: hidden;
+  opacity: 0.8;
+  padding: 0px 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

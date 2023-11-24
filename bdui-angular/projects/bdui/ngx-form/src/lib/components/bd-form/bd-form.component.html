@@ -1,0 +1,27 @@
+<div
+  class="bd-form-container"
+  [style.columnGap.px]="columnGap"
+  [style.rowGap.px]="rowGap"
+  [style.padding.px]="padding"
+  [style.paddingRight.px]="padding - columnGap"
+>
+  <ng-container *ngFor="let el of elements">
+    <div
+      class="bd-form-item"
+      [style.width]="
+        'calc(' + el.colspan + ' / ' + columns + '* 100% - ' + columnGap + 'px)'
+      "
+    >
+      <bd-form-element
+        [control]="formGroup | control : el.key"
+        [formGroup]="formGroup"
+        [hintLeft]="el.hintLeft!"
+        [hintRight]="el.hintRight!"
+        [label]="el.label!"
+        [key]="el.key!"
+        [params]="el.params!"
+        [type]="el.type!"
+      ></bd-form-element>
+    </div>
+  </ng-container>
+</div>
