@@ -1,11 +1,54 @@
-.bd-form-container {
-  display: flex;
-  flex-flow: row wrap;
-  background-color: #2196f3;
+.bd-form-title{
+  color: #222;
+  margin: 0;
+}
+.bd-form {
+  width: 100%;
 }
 
-.bd-form-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+.bd-form tr td {
   box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+.bd-form tr :first-child {
+  padding-left: 0px;
+}
+.bd-form tr :last-child {
+  padding-right: 0px;
+}
+
+label {
+  color: #222;
+}
+
+.bd-form-value{
+  flex: 1
+}
+
+input, textarea {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+input[type="checkbox"], input[type="file"], input[type="color"], input[type="radio"], input[type="range"] {
+  cursor: pointer;
+}
+input:disabled{
+  cursor:default;
+}
+
+input[type="checkbox"]{
+  min-height: 18px;
+  min-width: 18px;
+  width: auto;
+}
+
+.hint-container {
+  align-items: center;
+  color: #777;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  min-height: 18px;
 }

@@ -1,27 +1,119 @@
-<div
-  class="bd-form-container"
-  [style.columnGap.px]="columnGap"
-  [style.rowGap.px]="rowGap"
-  [style.padding.px]="padding"
-  [style.paddingRight.px]="padding - columnGap"
->
-  <ng-container *ngFor="let el of elements">
-    <div
-      class="bd-form-item"
-      [style.width]="
-        'calc(' + el.colspan + ' / ' + columns + '* 100% - ' + columnGap + 'px)'
-      "
-    >
-      <bd-form-element
-        [control]="formGroup | control : el.key"
-        [formGroup]="formGroup"
-        [hintLeft]="el.hintLeft!"
-        [hintRight]="el.hintRight!"
-        [label]="el.label!"
-        [key]="el.key!"
-        [params]="el.params!"
-        [type]="el.type!"
-      ></bd-form-element>
-    </div>
-  </ng-container>
-</div>
+<h3 class="bd-form-title">{{ formTitle }}</h3>
+<table class="bd-form">
+  <tbody [formGroup]="formGroup">
+    <tr *ngFor="let row of tableData">
+      <ng-container *ngFor="let element of row">
+        <td
+          [attr.colspan]="element.colspan"
+          [attr.rowspan]="element.rowspan"
+          [style.height.px]="rowHeight"
+          [style.width.%]="element.width"
+        >
+          <label [attr.for]="element.key">{{ element.label }}</label>
+          <div class="bd-form-value">
+            @switch (element.type) {
+              @case ("checkbox") {
+                <input type="checkbox" [formControlName]="element.key!" />
+              }
+              @case ("color") {
+                <input type="color" [formControlName]="element.key!" />
+              }
+              @case ("date") {
+                <input type="date" [formControlName]="element.key!" />
+              }
+              @case ("datetime-local") {
+                <input type="datetime-local" [formControlName]="element.key!" />
+              }
+              @case ("email") {
+                <input
+                  type="email"
+                  [formControlName]="element.key!"
+                  [placeholder]="element.params?.placeholder || ''"
+                />
+              }
+              @case ("file") {
+                <input type="file" [formControlName]="element.key!" />
+              }
+              @case ("hidden") {
+                <input type="hidden" [formControlName]="element.key!" />
+              }
+              @case ("image") {
+                <input type="image" [formControlName]="element.key!" />
+              }
+              @case ("month") {
+                <input type="month" [formControlName]="element.key!" />
+              }
+              @case ("number") {
+                <input
+                  type="number"
+                  [formControlName]="element.key!"
+                  [placeholder]="element.params?.placeholder || ''"
+                />
+              }
+              @case ("password") {
+                <input
+                  type="password"
+                  [formControlName]="element.key!"
+                  [placeholder]="element.params?.placeholder || ''"
+                />
+              }
+              @case ("radio") {
+                <ng-container *ngFor="let option of element.params?.options">
+                  <input
+                    type="radio"
+                    [formControlName]="element.key || ''"
+                    [value]="option.value"
+                    [id]="element.key + '-' + option.value"
+                  />
+                  <label [for]="element.key + '-' + option.value">
+                    {{ option.label }}
+                  </label>
+                </ng-container>
+              }
+              @case ("range") {
+                <input
+                  type="range"
+                  [formControlName]="element.key!"
+                  [min]="element.params?.min"
+                  [max]="element.params?.max"
+                />
+              }
+              @case ("search") {
+                <input type="search" [formControlName]="element.key!" />
+              }
+              @case ("tel") {
+                <input type="tel" [formControlName]="element.key!" />
+              }
+              @case ("time") {
+                <input type="time" [formControlName]="element.key!" />
+              }
+              @case ("text") {
+                <input
+                  type="text"
+                  [formControlName]="element.key!"
+                  [placeholder]="element.params?.placeholder || ''"
+                />
+              }
+              @case ("textarea") {
+                <textarea
+                  [formControlName]="element.key!"
+                  [placeholder]="element.params?.placeholder || ''"
+                ></textarea>
+              }
+              @case ("url") {
+                <input type="url" [formControlName]="element.key!" />
+              }
+              @default {
+                <span>Unimplemented form element type: {{ element.type }}</span>
+              }
+            }
+          </div>
+          <div class="hint-container">
+            <span class="hint-left">{{ element.hintLeft }}</span>
+            <span class="hint-right">{{ element.hintRight }}</span>
+          </div>
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>
